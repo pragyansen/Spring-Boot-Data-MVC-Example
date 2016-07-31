@@ -2,7 +2,6 @@ package com.pragyan.service;
 
 import java.security.NoSuchAlgorithmException;
 
-import org.apache.catalina.startup.ClassLoaderFactory.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +32,11 @@ public class UserService {
 			repository.save(user);
 			return true;
 		}
+	}
+	
+	public User findUser(String email){
+		User user = repository.findOne(email);
+		return user;
 	}
 	
 }

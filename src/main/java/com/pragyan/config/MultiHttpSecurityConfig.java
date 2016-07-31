@@ -31,8 +31,9 @@ public class MultiHttpSecurityConfig {
 			http
 			.antMatcher("/api/**")
 			.authorizeRequests()
-				.anyRequest().hasRole("USER")
-				.and()
+			.antMatchers("/api/signup").permitAll()
+			.anyRequest().authenticated()
+			.and()
 			.httpBasic().authenticationEntryPoint(restEntryPoint);
 
 			http.csrf().disable();
@@ -61,18 +62,18 @@ public class MultiHttpSecurityConfig {
 	}
 
 
-	@Autowired
+	/*	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
 		auth
 		.inMemoryAuthentication()
 		.withUser("pragyan").password("pragyan").roles("USER");
-	}
+	}*/
 
 
-	/*	@Autowired
+	@Autowired
 	public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception{
 		auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
-	}*/
+	}
 
 
 	@SuppressWarnings("deprecation")
